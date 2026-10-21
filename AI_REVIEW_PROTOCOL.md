@@ -43,7 +43,8 @@ claude -p "Read <packet-dir>/<gate>-<n+1>.md …" --agent <slug> --resume <uuid>
 
 `--add-dir` widens what `Read` may open (packets sit outside the worktree); it adds no tools.
 Before accepting any reply, the orchestrator checks the `system/init` record of that run:
-its `tools` list must equal the slug's allowlist in the lock. If it does not, the reply is void
+its `tools` list must contain `Read` and nothing outside the slug's `tools` in the lock (a declared
+MCP tool whose server is not registered is simply absent). If it does not, the reply is void
 and the gate stops ([enforcement check](#enforcement-check)). Session IDs per gate are kept in
 `<packet-dir>/agents.json`. If a session cannot be resumed, a new session of the same slug gets
 the earlier packets and findings.
