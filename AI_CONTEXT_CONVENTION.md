@@ -50,7 +50,7 @@ Invariants future work must keep.
 Concise, with links to source.
 
 ## Evidence
-Issue, PR, tests, commands, screenshots, source locations, review tokens (token @ SHA, reviewer),
+Issue, PR (it carries the review tokens), tests, commands, screenshots, source locations,
 or the user's explicit decision.
 
 ## Open follow-ups

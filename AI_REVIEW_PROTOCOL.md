@@ -102,8 +102,8 @@ The role prompts' own verdict formats (emoji severities, letter grades, "NEEDS W
 overridden by this grammar. Body instructions that need tools the reviewers do not have (shell
 capture scripts, scaffolding, deploys) do not apply.
 
-The token, SHA and reviewer slug of every gate go into the context record's Evidence section
-and the PR body.
+The token, SHA and reviewer slug of every gate go into the PR body; the context record's Evidence
+links to the PR. (A commit cannot carry the token for its own SHA, so the record never does.)
 
 ## Enforcement check
 
