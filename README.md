@@ -17,6 +17,11 @@ contracts, and active-work status.
 - [`VERSIONING_STANDARD.md`](VERSIONING_STANDARD.md) — what is actually running in
   front of a customer: the `1.MINOR.PATCH` number, the channel, and the runtime
   surface every app must expose. Binding on every app.
+- [`AI_DEVELOPMENT_WORKFLOW.md`](AI_DEVELOPMENT_WORKFLOW.md) — the 15-state lifecycle every
+  AI-assisted feature or fix follows, with [`AI_REVIEW_PROTOCOL.md`](AI_REVIEW_PROTOCOL.md)
+  (read-only review gates), [`AI_CONTEXT_CONVENTION.md`](AI_CONTEXT_CONVENTION.md) (per-repo
+  durable context records), [`AI_AGENT_ROLES.lock`](AI_AGENT_ROLES.lock) (pinned agents and
+  skills) and [`AI_CONTEXT_COMPACTION.md`](AI_CONTEXT_COMPACTION.md) (weekly maintenance).
 
 > Note: several docs here link to `ENGINEERING_CONSTITUTION.md`, which has never
 > existed in this repo or anywhere in the org — a dangling reference, not a moved

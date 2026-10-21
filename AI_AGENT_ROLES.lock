@@ -1,0 +1,39 @@
+# AI_AGENT_ROLES.lock — pinned AI roles and skills. Change only by PR; never update from upstream main silently.
+# Install procedure and checks: AI_REVIEW_PROTOCOL.md#enforcement-check
+
+[agency-agents]
+source   = https://github.com/msitarzewski/agency-agents
+revision = 4e3ac3ca6604c75113f52c695dbddcc7af928b46   # 2026-10-19, "Merge pull request #1175"
+license  = MIT
+install_dir = ~/.claude/agents/<slug>.md
+patch    = frontmatter replaced by: name: <slug> / upstream description line verbatim / tools line below;
+           body (everything after the upstream frontmatter) byte-identical to the upstream blob
+tools    = Read, mcp__memory-search__memory_search
+# upstream_path                                              upstream_blob                              installed_sha256
+engineering/engineering-minimal-change-engineer.md         11d7660010fb70c5fcd4c36e2239afe357ecd335   0069b6ddeec59346be0e69fe6ae364ac45a31d387a30ac86fc7f2ca75e60cd65
+engineering/engineering-multi-agent-systems-architect.md   4ca4ebef41d7ec024158d8ed2a9221c2037a72cc   2fa7ccb9683fdddefef95a6aa58eecce29a49aa20c545be1c3dcbeecb27faa02
+engineering/engineering-rapid-prototyper.md                85395944b7bbf6357d4cf97d02aa565a125fe8dd   806ba2f9579b6d2f3d4343ae9f5f19fde9957d3f7dfa74e3dc672e209cd583a3
+engineering/engineering-code-reviewer.md                   fb93291f4b94a8d5687aa1cc0d05741c3352dd22   b68ebc3b2714affc85d97329df131207ff5b0a7d8b81a0599df8c2869b7ed872
+design/design-ui-finish-gate-reviewer.md                   cefcf1a9787c6d5735b740f348b2b73a282cc439   680e4012b539510c840c0390c4ec4780b1ec38a781f4f6c10cca8b2127577eb2
+testing/testing-evidence-collector.md                      321ce36bd2586254b0d7194c5f62965204170532   3a61f4af6c1244b6f7f8ec747b25b5d038e93b14d2b1d85872e17c3e800c1423
+testing/testing-reality-checker.md                         e534cfbd20d3115d5265387f19db7d3b25649421   011e58e94eeacccf9a966d9e541885ba7cb742f4fab24353fde5737bbcbedaa2
+
+[karpathy-guidelines]
+source   = https://github.com/multica-ai/andrej-karpathy-skills   # formerly forrestchang/andrej-karpathy-skills
+revision = 2c606141936f1eeef17fa3043a72095b4765b9c2
+license  = MIT (declared in SKILL.md frontmatter; repo has no LICENSE file)
+path     = skills/karpathy-guidelines/SKILL.md
+upstream_blob    = 6a62d0441753157ca6ca50479e490c2948033adb
+install_path     = ~/.claude/skills/karpathy-guidelines/SKILL.md   # verbatim copy
+installed_sha256 = 6e22cc54cb02a5e98ae42d06d9d7292db0c1b43894831b32879beb0166b2aea7
+
+[context-mode]
+plugin  = context-mode@context-mode (marketplace mksglu/context-mode)
+version = 1.0.169     # ctx_doctor all OK on 2026-10-21
+
+[enforcement]
+claude_code_version = 2.1.126
+verified = 2026-10-21
+evidence = per-slug `claude -p --agent <slug>` system/init tools == ["Read"]
+           (memory_search not yet registered), unchanged after --resume of the same session;
+           all forbidden tools absent; no file written

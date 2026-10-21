@@ -3,6 +3,8 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in
 this repository.
 
+**AI workflow:** before a feature or fix, read [AI_DEVELOPMENT_WORKFLOW.md](AI_DEVELOPMENT_WORKFLOW.md);
+this repo's own context records are routed from [docs/AI_CONTEXT_INDEX.md](docs/AI_CONTEXT_INDEX.md).
 
 ## Bugs: open the issue before you fix it
 
