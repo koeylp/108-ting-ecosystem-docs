@@ -5,6 +5,7 @@ this repository.
 
 **AI workflow:** before a feature or fix, read [AI_DEVELOPMENT_WORKFLOW.md](AI_DEVELOPMENT_WORKFLOW.md);
 this repo's own context records are routed from [docs/AI_CONTEXT_INDEX.md](docs/AI_CONTEXT_INDEX.md).
+New machine: run [scripts/ai-bootstrap.sh](scripts/ai-bootstrap.sh) once.
 
 ## Bugs: open the issue before you fix it
 

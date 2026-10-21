@@ -10,6 +10,16 @@ Companion docs: [AI_REVIEW_PROTOCOL.md](AI_REVIEW_PROTOCOL.md) (how gates are re
 Machine facts (paths, Docker stack, cleanup commands) live in `~/108-ecosystem/CLAUDE.md`;
 repository commands and hazards live in each repo's `CLAUDE.md`. This file does not copy them.
 
+## Setting up a machine
+
+Every team member runs `scripts/ai-bootstrap.sh` once from a checkout of this repo at
+`~/108-ecosystem/108-ting-ecosystem-docs`, and again whenever `AI_AGENT_ROLES.lock` changes.
+It installs the pinned reviewer agents and the Karpathy skill, checks that the context-mode plugin
+and rtk are installed (installing context-mode if needed), links `~/108-ecosystem/CLAUDE.md` to
+[ECOSYSTEM_ROOT_CLAUDE.md](ECOSYSTEM_ROOT_CLAUDE.md), and runs the read-only test. Use
+`--check` to change nothing and only report what is missing. It never overwrites a differing file
+without keeping a `.bak` copy, and it never replaces an existing root `CLAUDE.md`.
+
 ## Authority order
 
 1. Explicit user instructions

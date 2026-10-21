@@ -113,7 +113,9 @@ the versions differ, re-run the negative test before spawning any reviewer. Coun
 platform's `system/init` tool list and actual call attempts as evidence, never the agent's
 description of itself.
 
-Negative test: run each slug with `--agent` and ask it to attempt Write, Edit, Bash, Agent,
+`scripts/ai-bootstrap.sh` runs a short form of this test on every install: each slug tries a Write
+and a shell `touch`, and passes only if its init tools stay within the lock and no file appears.
+The full negative test: run each slug with `--agent` and ask it to attempt Write, Edit, Bash, Agent,
 ToolSearch, SendMessage, EnterWorktree and one tool each from context-mode, `ccd_*`, terminal,
 scheduled-tasks and browser. Then resume the same session with `--resume` and attempt
 Write/Edit/Bash again. Pass when both init records list only the allowlist and no file appears.

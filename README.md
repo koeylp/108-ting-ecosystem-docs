@@ -21,7 +21,7 @@ contracts, and active-work status.
   AI-assisted feature or fix follows, with [`AI_REVIEW_PROTOCOL.md`](AI_REVIEW_PROTOCOL.md)
   (read-only review gates), [`AI_CONTEXT_CONVENTION.md`](AI_CONTEXT_CONVENTION.md) (per-repo
   durable context records), [`AI_AGENT_ROLES.lock`](AI_AGENT_ROLES.lock) (pinned agents and
-  skills) and [`AI_CONTEXT_COMPACTION.md`](AI_CONTEXT_COMPACTION.md) (weekly maintenance).
+  skills) and [`AI_CONTEXT_COMPACTION.md`](AI_CONTEXT_COMPACTION.md) (weekly maintenance). New team machine: run `scripts/ai-bootstrap.sh` once.
 
 > Note: several docs here link to `ENGINEERING_CONSTITUTION.md`, which has never
 > existed in this repo or anywhere in the org — a dangling reference, not a moved

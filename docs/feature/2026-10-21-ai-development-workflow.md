@@ -10,6 +10,7 @@ triggers:
   - review worker
   - context record
   - agency agents
+  - bootstrap new machine
   - ขั้นตอนการทำงานของ AI
 canonical_code:
   - AI_DEVELOPMENT_WORKFLOW.md
@@ -17,6 +18,8 @@ canonical_code:
   - AI_CONTEXT_CONVENTION.md
   - AI_AGENT_ROLES.lock
   - AI_CONTEXT_COMPACTION.md
+  - scripts/ai-bootstrap.sh
+  - ECOSYSTEM_ROOT_CLAUDE.md
 supersedes: []
 ---
 
@@ -45,11 +48,15 @@ and a phased rollout (2026-10-21; rollout plan reviewed through five rounds).
 - A token counts only for the SHA it names. The tool list comes from the platform, not from the
   agent.
 - Pins change only by PR, never by silently tracking upstream `main`.
+- Every team machine is set up from the lock by `scripts/ai-bootstrap.sh`, never by hand; the
+  root `CLAUDE.md` is tracked here as `ECOSYSTEM_ROOT_CLAUDE.md`.
 - Root and per-repo `CLAUDE.md` additions stay pointers. The workflow is not copied into repos.
 
 ## What changed
 Added the five `AI_*` documents at the repo root, this repo's `docs/` context skeleton, a pointer in
-[CLAUDE.md](../../CLAUDE.md), and index rows in [README.md](../../README.md).
+[CLAUDE.md](../../CLAUDE.md), index rows in [README.md](../../README.md), the bootstrap script
+[scripts/ai-bootstrap.sh](../../scripts/ai-bootstrap.sh), and the tracked root control doc
+[ECOSYSTEM_ROOT_CLAUDE.md](../../ECOSYSTEM_ROOT_CLAUDE.md), so every team member gets the same setup.
 
 ## Evidence
 - **Plan review:** `PLAN_APPROVED` from engineering-minimal-change-engineer and

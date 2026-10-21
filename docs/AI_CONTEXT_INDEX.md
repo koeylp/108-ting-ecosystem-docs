@@ -7,7 +7,7 @@ Read a linked record only when its trigger matches the task.
 
 | Trigger | Record | Use when |
 |---|---|---|
-| ai development workflow, review gate, review worker, context record, agency agents | [One AI workflow for the whole ecosystem](feature/2026-10-21-ai-development-workflow.md) | changing the workflow, review protocol, agent pins or context convention |
+| ai development workflow, review gate, review worker, context record, agency agents, bootstrap new machine | [One AI workflow for the whole ecosystem](feature/2026-10-21-ai-development-workflow.md) | changing the workflow, review protocol, agent pins or context convention |
 
 ## Superseded
 
