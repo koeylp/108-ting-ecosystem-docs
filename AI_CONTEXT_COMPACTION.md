@@ -2,13 +2,20 @@
 
 Weekly maintenance of the records described in [AI_CONTEXT_CONVENTION.md](AI_CONTEXT_CONVENTION.md).
 
-**Status:** specified, not yet installed. The job ships in `memory-search-dev`, which already owns
-the nightly memory pipeline and its protections. Until it is installed, run this procedure by hand
-when a repo's index grows stale.
+**Status:**
+- **Where the job lives:** `memory-search-dev`, which already owns the nightly memory pipeline and
+  its protections. It's in [yuthstyle88/memory-search-dev#4](https://github.com/yuthstyle88/memory-search-dev/pull/4),
+  stacked on #2.
+- **How to install it:** `scripts/install.sh --ecosystem-root ~/108-ecosystem --weekly-compaction`,
+  from that repo's primary checkout.
+- **Where it runs today:** on the owner's machine (2026-10-22). It runs once #2 and #4 merge and
+  that checkout is updated.
+- **Until it runs where you work:** do this procedure by hand when a repo's index grows stale.
 
 ## Schedule and lock
 
-- Sunday 05:00 local time, after the 03:00 nightly memory pipeline.
+- Thursday 05:00 local time (owner's choice, 2026-10-22). A machine in repository-context mode
+  never runs the nightly memory pipeline, so there is no 03:00 run to follow.
 - `scripts/weekly-compact.sh` sits next to `scripts/nightly.sh` and takes the same lock,
   `<checkout>/.nightly.lock`: mkdir, pid file, take over from a dead holder, exit 0 while a live
   pid holds it.

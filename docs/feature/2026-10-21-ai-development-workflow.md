@@ -65,9 +65,22 @@ Added the five `AI_*` documents at the repo root, this repo's `docs/` context sk
   their pinned blobs ([AI_AGENT_ROLES.lock](../../AI_AGENT_ROLES.lock)).
 - **Enforcement test:** on Claude Code 2.1.126, `system/init` tools were `["Read"]` before and after
   `--resume`, every forbidden tool was absent, and no file was written.
+- **Bootstrap (2026-10-22).**
+  - **Fresh install:** into a throwaway Claude config and ecosystem; idempotent, then `--check`
+    clean.
+  - **From a worktree:** the root links land at the ecosystem root, not under `.wt/`.
+  - **Tampered agent:** backed up outside `agents/` and restored to its pin.
+  - **Read-only test against the real agents:** 7/7 pass with tools `[Read, memory_search]`, and
+    files are byte-identical before and after.
 - **Code and final review:** tokens are in the PR body.
 
 ## Open follow-ups
-- The retrieval section of AI_CONTEXT_CONVENTION.md is updated once repo-scoped memory-search ships.
-- The compaction job is not yet installed.
+- **Retrieval and compaction ship from memory-search-dev:** retrieval in #2, compaction in #4,
+  stacked on #2. Both docs cite them; they reach a teammate once merged and installed (macOS).
+- **The jh local stack needs volumes a fresh machine lacks.** It declares its data volumes
+  `external`, so a teammate needs them created, and the data, before `docker compose up` works.
+  That belongs to jh-api-dev's `docker/local-stack/README.md`.
+- **Plugin versions can't be pinned at install.** The CLI installs only the marketplace's current
+  version, so bootstrap enforces the pin afterwards. A context-mode release blocks new installs until
+  a lock PR records it.
 - ACTIVE_WORK.md and CONTROL_DOC_COVERAGE.md are stale (2026-07-24/25); they need an owner refresh.

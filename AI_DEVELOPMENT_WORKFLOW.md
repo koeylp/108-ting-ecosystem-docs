@@ -12,13 +12,20 @@ repository commands and hazards live in each repo's `CLAUDE.md`. This file does 
 
 ## Setting up a machine
 
-Every team member runs `scripts/ai-bootstrap.sh` once from a checkout of this repo at
-`~/108-ecosystem/108-ting-ecosystem-docs`, and again whenever `AI_AGENT_ROLES.lock` changes.
-It installs the pinned reviewer agents and the Karpathy skill, checks that the context-mode plugin
-and rtk are installed (installing context-mode if needed), links `~/108-ecosystem/CLAUDE.md` to
-[ECOSYSTEM_ROOT_CLAUDE.md](ECOSYSTEM_ROOT_CLAUDE.md), and runs the read-only test. Use
-`--check` to change nothing and only report what is missing. It never overwrites a differing file
-without keeping a `.bak` copy, and it never replaces an existing root `CLAUDE.md`.
+Every team member runs `scripts/ai-bootstrap.sh` once, and again whenever `AI_AGENT_ROLES.lock`
+changes. Run it from this repo's primary checkout at `~/108-ecosystem/108-ting-ecosystem-docs` or
+any worktree of it; it finds the primary and the ecosystem root itself.
+- **What it installs:** the pinned reviewer agents and the Karpathy skill.
+- **context-mode:** it installs the plugin if it's missing, and fails unless the installed version
+  is the one the lock pins.
+- **The root `CLAUDE.md`:** it links `~/108-ecosystem/CLAUDE.md` and `AGENTS.md` to
+  [ECOSYSTEM_ROOT_CLAUDE.md](ECOSYSTEM_ROOT_CLAUDE.md). It never replaces an existing root
+  `CLAUDE.md`; it says how it differs.
+- **The read-only test:** it runs it last, as 7 short Haiku calls. `--check` changes nothing and
+  `--skip-verify` installs only; neither runs the test.
+- **Backups:** a file that differs from its pin is backed up under
+  `~/.claude/.ai-bootstrap-backups/` before it's replaced.
+- **Platforms:** macOS, or Linux with `sha256sum`.
 
 ## Authority order
 

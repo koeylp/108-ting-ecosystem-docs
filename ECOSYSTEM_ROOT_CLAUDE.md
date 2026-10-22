@@ -1,6 +1,6 @@
-# 108 Ecosystem — this machine
+# 108 Ecosystem — machine layout
 
-<!-- verified: 2026-09-02 by walking the tree, `gh repo view`, `docker inspect`, `git worktree list`. Re-verify before trusting anything older than two weeks. -->
+<!-- verified: 2026-09-02 (tree walk, `gh repo view`, `docker inspect`, `git worktree list`); machine-neutral since 2026-10-22. Re-verify anything older than two weeks. -->
 
 This is `~/108-ecosystem/CLAUDE.md`, a symlink to `108-ting-ecosystem-docs/ECOSYSTEM_ROOT_CLAUDE.md`
 (edit it there, by PR). **Claude Code** loads it as an ancestor of any
@@ -18,13 +18,14 @@ whether a reader still finds the fact they came for.
 |---|---|---|
 | **repo facts** — gates, quirks, "this fails silently because…" | each repo's `CLAUDE.md` (`AGENTS.md` → symlink), plus `.ai_context/` where present | anyone, by PR |
 | **ecosystem design & decisions** — architecture, deployment allocation, ADRs, **`DO_NOT_TOUCH.md`** (read it first), `ACTIVE_WORK.md` (in-flight state / handoff) | `108-ting-ecosystem-docs/` (clone of `108-Plaza/108-ting-ecosystem-docs`) | owner, by PR |
-| **this machine** — layout, conventions, what's running | this file | whoever changes the layout |
+| **machine layout** — layout, conventions, what runs locally | this file, shared by every team machine | anyone, by PR to `108-ting-ecosystem-docs` |
 | **handoff / in-flight state** | `108-ting-ecosystem-docs/ACTIVE_WORK.md` — **stale since 2026-07-24**; refresh by PR before trusting it. The owner's 2026-09-01 instruction moving active work to `jh/` is the "explicit approval" `DO_NOT_TOUCH.md` requires for leaving POS108. | both tools |
 | agent-private lessons ("prove RED first") | each tool's own memory | that tool |
 
 Every fact in the first three tiers carries a `verified: <date>` and, where it
 matters, the command that verified it. Facts rot within days here — three
-private memories were wrong within a week of being written.
+private memories were wrong within a week of being written. Facts true on one
+machine only go in your tool's own memory, not here.
 
 ## AI workflow
 
@@ -52,9 +53,11 @@ This replaces a per-repo table that said `108heros-web` was org-trunk because
 moved: PRs were merging on that same mirror throughout (#13, 2026-09-06). Do not
 reinstate the table from a moved issue.
 
+Clone only what you work on; whatever you clone goes where this tree puts it.
+
 ```
 ~/108-ecosystem/
-  AGENTS.md  CLAUDE.md            this file, and the one-line include
+  AGENTS.md  CLAUDE.md            symlinks to this file (scripts/ai-bootstrap.sh makes them)
   108-ting-ecosystem-docs/       ecosystem design + decisions (tier 2)
   jh/                            the jobs + heros family (was 108jobs/)
     108jobs-flutter-dev  108jobs-web-dev        jobs side
@@ -72,15 +75,16 @@ reinstate the table from a moved issue.
   .ai/archive/                   retired notes, kept for triage
 ```
 
-`~/108-ecosystem/108jobs` is a **transitional symlink → jh/**, left so sessions
-and containers started before the rename keep resolving. Remove it once
+On a machine set up before 2026-09-02, `~/108-ecosystem/108jobs` may be a
+**transitional symlink → jh/**, left so sessions and containers started before
+the rename keep resolving. Remove it once
 `lsof -a -d cwd` shows nothing under it and no key in `~/.codex/config.toml` /
 `~/.claude.json` names the old path.
 
 **Vocabulary in the ride code:** *rider* means the **driver**; the customer is
 the **passenger**. Misreading this inverts most of `jh-api-dev/crates/logistics`.
 
-## Working rules on this machine
+## Working rules
 
 - **Primary checkouts stay on the default branch and clean.** All work in a
   worktree: `~/108-ecosystem/.wt/<repo>/<branch>/`. Never `/private/tmp` (macOS
@@ -129,10 +133,10 @@ Two neighbours keep their own repos and Compose projects and are reached over
 need a simulator or a device. Run them from Xcode / Android Studio / `flutter
 run`, pointed at `http://localhost:8536`.
 
-Data lives in the `app108jobs_*` named volumes, declared `external` so the
-project rename did not orphan them: 2.6 GB, `app_108jobs` (75 tables) and
-`rider_flow_scratch`, which is what the API config points at. `docker compose
-down` is safe; `down -v` would destroy them.
+Data lives in the `app108jobs_*` volumes (+ `jh_cargo_home`), declared `external`
+so the rename did not orphan them: `app_108jobs` and `rider_flow_scratch`, which
+the API config uses. **A fresh machine has none**, so `up` stops until they exist
+(compose `README.md` → *Volumes*). `down` is safe; `down -v` destroys them.
 
 pictrs is gone (removed 2026-09-01; MAD replaced it). The old `app108jobs`
 Compose project — launched from a worktree that no longer exists and therefore
@@ -169,16 +173,17 @@ macOS. Xcode grows too: trash `~/Library/Developer/Xcode/DerivedData/*`, then
 
 ## Memory
 
-Claude keys memory by working directory: `~/.claude/projects/-Users-koeyl-108-ecosystem-<group>/memory/`
-— `jh` (with `108jobs` symlinked to it), `108plaza-pos`, `108bipbyte`, and one per
-platform repo. Start sessions from the group or repo dir you mean.
-Codex has its own store (`~/.codex/memories`, empty as of today) and an optional
+Claude keys memory by working directory, with `/` turned into `-`:
+`~/.claude/projects/-Users-<you>-108-ecosystem-<group>/memory/` — `jh` (also
+under `108jobs` where that symlink exists), `108plaza-pos`, `108bipbyte`, and one
+per platform repo. Start sessions from the group or repo dir you mean.
+Codex has its own store (`~/.codex/memories`) and an optional
 hosted MCP server (mnemoverse) enabled only on the Codex side — a recall
 convenience, **never the source of truth**.
 
-`.ai/archive/2026-06/` holds two sets of notes copied out of Claude memory in
-June 2026 and never synced since — 18 files, none duplicated in live memory.
-Treat as unverified; fold anything still true into a repo `AGENTS.md`.
+`.ai/archive/`, where a machine has one, holds notes copied out of an agent's
+memory and never synced since. Treat them as unverified; fold anything still
+true into a repo `CLAUDE.md`.
 
 ## Pending (owner)
 

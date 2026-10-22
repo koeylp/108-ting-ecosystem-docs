@@ -109,8 +109,9 @@ Archiving moves a record to `docs/context-archive/YYYY-QN/` with `status: archiv
 **Today:** read `docs/AI_CONTEXT_INDEX.md` in the repo you are working in, and open only the records
 whose trigger matches the task. Read another repo's records only when the task touches that repo.
 
-**Once repo-scoped memory-search is installed**, the rollout step in
-`memory-search-dev`, which this section will be updated to cite:
+**Once repo-scoped memory-search is installed.** That's
+[yuthstyle88/memory-search-dev#2](https://github.com/yuthstyle88/memory-search-dev/pull/2), installed with
+`scripts/install.sh --ecosystem-root ~/108-ecosystem` from that repo's primary checkout (macOS):
 
 - call `memory_search(query, worktree_root=<current worktree>, limit=3)`;
 - a worktree sees its own uncommitted record edits;

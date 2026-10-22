@@ -33,7 +33,8 @@ version = 1.0.169     # ctx_doctor all OK on 2026-10-21
 
 [enforcement]
 claude_code_version = 2.1.126
-verified = 2026-10-21
-evidence = per-slug `claude -p --agent <slug>` system/init tools == ["Read"]
-           (memory_search not yet registered), unchanged after --resume of the same session;
-           all forbidden tools absent; no file written
+verified = 2026-10-22
+evidence = per-slug `claude -p --agent <slug>` system/init tools == ["Read"] where the memory-search
+           MCP is not registered (2026-10-21), and ["Read", "mcp__memory-search__memory_search"] where it
+           is (2026-10-22, scripts/ai-bootstrap.sh read-only test); unchanged after --resume of the same
+           session; all forbidden tools absent; no file written
