@@ -30,6 +30,8 @@ ECO=$(dirname "$PRIMARY")                  # ~/108-ecosystem
 case "$ECO/" in
   */.wt/*) echo "the primary checkout of this repo is under .wt/ ($PRIMARY); clone it to ~/108-ecosystem/$(basename "$PRIMARY")" >&2; exit 1 ;;
 esac
+# Every doc assumes ~/108-ecosystem; a root CLAUDE.md anywhere else is loaded by nothing that matters.
+[ "$(basename "$ECO")" = 108-ecosystem ] || { echo "this repo's primary checkout is $PRIMARY; the workflow expects it at ~/108-ecosystem/$(basename "$PRIMARY")" >&2; exit 1; }
 LOCK=$DOCS/AI_AGENT_ROLES.lock
 CLAUDE_DIR=${CLAUDE_CONFIG_DIR:-$HOME/.claude}
 FAIL=0
